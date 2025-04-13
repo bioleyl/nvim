@@ -222,6 +222,13 @@ return {
         --   },
         -- },
       },
+      omnisharp = {
+        -- This extra config is needed for proper semantic highlighting & support
+        enable_editorconfig_support = true,
+        enable_roslyn_analyzers = true,
+        organize_imports_on_format = true,
+        enable_import_completion = true,
+      },
     }
 
     -- Ensure the servers and tools above are installed
@@ -242,6 +249,7 @@ return {
       'stylua', -- Used to format Lua code
       'eslint_d',
       'prettierd',
+      'omnisharp',
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
