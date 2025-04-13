@@ -14,3 +14,5 @@ tmux source ~/.tmux.conf
 
 # Install typescript-language-server and typescript
 npm i -g typescript-language-server typescript
+
+echo "Installation completed successfully."
