@@ -209,6 +209,18 @@ return {
       eslint = {},
 
       lua_ls = {
+        settings = {
+          Lua = {
+            diagnostics = {
+              globals = { 'vim' }, -- 👈 this is the key part!
+            },
+            workspace = {
+              library = vim.api.nvim_get_runtime_file('', true),
+              checkThirdParty = false,
+            },
+            telemetry = { enable = false },
+          },
+        },
         -- cmd = { ... },
         -- filetypes = { ... },
         -- capabilities = {},
