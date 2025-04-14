@@ -37,25 +37,13 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '_' }
 
 vim.opt.scrolloff = 10
 
--- Format with eslint_d or prettierd when saving
--- vim.api.nvim_create_autocmd('BufWritePre', {
---   pattern = { '*.ts', '*.js', '*.jsx', '*.tsx' },
---   callback = function()
---     -- Get the absolute file path
---     local file_path = vim.fn.expand '%:p'
---
---     -- Check if there is an ESLint configuration file
---     local eslintrc = vim.fn.glob '.eslintrc.*'
---     if eslintrc ~= '' then
---       print 'eslint'
---       -- If ESLint configuration is found, use eslint_d for formatting
---       vim.fn.system('eslint_d --fix ' .. file_path) -- Run eslint_d
---       -- vim.cmd 'edit!' -- Revert any changes made by eslint_d
---     else
---       print 'prettier'
---       -- If no ESLint configuration, use prettierd for formatting
---       vim.fn.system('prettierd --write ' .. file_path) -- Run prettierd
---       -- vim.cmd 'edit!' -- Revert any changes made by prettierd
---     end
---   end,
--- })
+-- Highlight when yanking (copying) text
+--  Try it with `yap` in normal mode
+--  See `:help vim.highlight.on_yank()`
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight when yanking (copying) text',
+  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+})
