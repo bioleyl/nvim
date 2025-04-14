@@ -28,13 +28,6 @@ return {
       desc = '[F]ind in neovim [C]onfig',
     },
     {
-      '<leader>fs',
-      function()
-        require('fzf-lua').lsp_document_symbols()
-      end,
-      desc = '[F]ind in [S]ymbols',
-    },
-    {
       '<leader>fb',
       function()
         require('fzf-lua').builtin()
