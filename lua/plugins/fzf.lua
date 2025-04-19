@@ -9,14 +9,35 @@ return {
     {
       '<leader>ff',
       function()
-        require('fzf-lua').files()
+        local fzf = require 'fzf-lua'
+        local is_git = vim.fn.system('git rev-parse --is-inside-work-tree'):match 'true'
+
+        if is_git then
+          fzf.git_files { show_untracked = true }
+        else
+          fzf.files {}
+        end
       end,
       desc = '[F]ind [F]ile',
     },
     {
       '<leader>fg',
       function()
-        require('fzf-lua').live_grep()
+        local fzf = require 'fzf-lua'
+        local is_git = vim.fn.system('git rev-parse --is-inside-work-tree'):match 'true'
+
+        if is_git then
+          fzf.grep {
+            search = '',
+            cmd = 'rg --files | xargs rg --color=always --line-number --column --smart-case',
+            prompt = 'Grep (git files)> ',
+          }
+        else
+          fzf.live_grep {
+            rg_opts = "--column --line-number --no-heading --color=always --smart-case --hidden -g '!node_modules/**'",
+            prompt = 'Grep (all files)> ',
+          }
+        end
       end,
       desc = '[F]ind by [G]rep',
     },
