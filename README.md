@@ -8,5 +8,5 @@ To use the Nerd Font in our Windows Terminal:
 - Open the tray by clicking the three-lines icon on the top left
 - Click Ubuntu under Profiles to open its profile settings
 - Scroll down to Additional Settings and click Appearance
-- Change Font face to JetBrainsMono Nerd Font§
+- Change Font face to JetBrainsMono Nerd Font
 
