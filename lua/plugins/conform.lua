@@ -6,7 +6,7 @@ return {
       if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
         return
       end
-      return { timeout_ms = 500, lsp_format = 'fallback' }
+      return { timeout_ms = 2000, lsp_format = 'fallback' }
     end,
     formatters_by_ft = {
       lua = { 'stylua' },
@@ -21,6 +21,7 @@ return {
       typescript = { 'eslint_custom', 'prettierd', stop_after_first = true },
       html = { 'prettierd', stop_after_first = true },
       json = { 'prettierd', stop_after_first = true },
+      cs = { 'csharpier' },
     },
     formatters = {
       -- This formatter uses eslint_d only if ESLint config exists
@@ -53,6 +54,13 @@ return {
       prettierd = {
         command = 'prettierd',
         args = { '$FILENAME' },
+      },
+
+      -- C# formatter
+      csharpier = {
+        command = 'csharpier',
+        args = { 'format' },
+        stdin = true,
       },
     },
   },
