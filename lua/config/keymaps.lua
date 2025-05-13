@@ -21,7 +21,7 @@ vim.keymap.set('n', 'gl', function()
 end, { desc = 'Open Diagnostic in Float' })
 
 -- Display code information
-vim.keymap.set('n', '<C-Space>', function()
+vim.keymap.set('n', '<C-d>', function()
   vim.lsp.buf.hover()
 end, { desc = 'Open lsp info' })
 

@@ -25,16 +25,30 @@ return {
       function()
         local fzf = require 'fzf-lua'
         local is_git = vim.fn.system('git rev-parse --is-inside-work-tree'):match 'true'
+        local is_win = vim.fn.has 'win32' == 1 or vim.fn.has 'win64' == 1
+
+        local cmd = ''
+        local pattern = '' -- You can modify this to set the pattern dynamically
+
+        -- Default pattern for grep if none is provided
+        local search_pattern = pattern == '' and '.*' or pattern
+        if is_win then
+          -- Windows (PowerShell)
+          cmd = string.format('powershell -Command "rg --files | & { rg --color=always --line-number --column --smart-case \'%s\' @($_) }"', search_pattern)
+        else
+          -- Linux or Unix: Use xargs as usual
+          cmd = string.format("rg --files | xargs rg --color=always --line-number --column --smart-case '%s'", search_pattern)
+        end
 
         if is_git then
           fzf.grep {
             search = '',
-            cmd = 'rg --files | xargs rg --color=always --line-number --column --smart-case',
+            cmd = cmd,
             prompt = 'Grep (git files)> ',
           }
         else
           fzf.live_grep {
-            rg_opts = "--column --line-number --no-heading --color=always --smart-case --hidden -g '!node_modules/**'",
+            rg_opts = '--column --line-number --no-heading --color=always --smart-case --hidden -g "!node_modules/**"',
             prompt = 'Grep (all files)> ',
           }
         end

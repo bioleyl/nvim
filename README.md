@@ -10,3 +10,22 @@ To use the Nerd Font in our Windows Terminal:
 - Scroll down to Additional Settings and click Appearance
 - Change Font face to JetBrainsMono Nerd Font
 
+## Installing on Windows
+
+### Install dependecies
+```bash
+winget install fzf
+winget install --id=DEVCOM.Lua  -e
+winget install sharkdp.fd
+```
+
+Download (ripgrep)[https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep-13.0.0-x86_64-pc-windows-msvc.zip] and unzip it in `C:\dev\`.  
+
+Add `C:\dev\ripgrep-13.0.0-x86_64-pc-windows-msvc` to your PATH.  
+
+Download (ziglang)[https://ziglang.org/builds/zig-windows-x86_64-0.15.0-dev.483+837e0f9c3.zip] and unzip it in `C:\dev\`.  
+
+Add `C:\dev\zig-windows-x86_64-0.15.0-dev.483+837e0f9c3` to your PATH. 
+
+Run Neovim as admin so that Treesitter can build and install the parsers.  
+
