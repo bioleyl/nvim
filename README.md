@@ -29,3 +29,15 @@ Add `C:\dev\zig-windows-x86_64-0.15.0-dev.483+837e0f9c3` to your PATH.
 
 Run Neovim as admin so that Treesitter can build and install the parsers.  
 
+### Configure to run from address bar
+
+Make a batch fil in `C:\dev\` called `nv.bat` with the following content:
+```bat
+@echo off
+setlocal
+set "dir=%cd%"
+start powershell.exe -NoExit -Command "cd '%dir%'; nvim"
+```
+
+Add `C:\dev\` to your PATH.
+
